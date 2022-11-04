@@ -4,7 +4,7 @@ terraform {
       source = "hashicorp/google"
       version = "~> 4.0"
     }
-    random {
+    random = {
         source = "hashicorp/random"
         version = "~> 3.4"
     }
