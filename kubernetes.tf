@@ -9,7 +9,7 @@ data "google_service_account" "svc-gke" {
 
 resource "google_container_cluster" "gke" {
   name               = local.gke_cluster_name
-  location           = var.location
+  location           = var.region
   initial_node_count = 1
   project = google_project.dev-k8s.project_id
   networking_mode = "VPC_NATIVE"
