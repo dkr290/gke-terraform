@@ -1,4 +1,4 @@
-data "google_service_account" "svc-gke" {
+resource "google_service_account" "svc-gke" {
   account_id = "svc-gke"
   project = google_project.dev-k8s.project_id
 
