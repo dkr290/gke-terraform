@@ -16,7 +16,7 @@ resource "google_compute_subnetwork" "private" {
   private_ip_google_access = true
 
   dynamic "secondary_ip_range"{
-      for_each = local.secondary_ip_range
+      for_each = local.secondary_ip_ranges
 
       content {
         range_name = secondary_ip_range.key
