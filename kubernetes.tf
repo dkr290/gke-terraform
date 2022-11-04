@@ -22,7 +22,7 @@ resource "google_container_cluster" "gke" {
   }
 
   ip_allocation_policy {
-    clcluster_secondary_range_name = "pod-ip-range"
+    cluster_secondary_range_name = "pod-ip-range"
     services_secondary_range_name = "services-ip-range"
 
   }
@@ -39,7 +39,7 @@ resource "google_container_cluster" "gke" {
   }
 
 workload_identity_config {
-  woworkload_pool= "${google_project.dev-k8s.project_id}.svc.id.goog"
+  workload_pool= "${google_project.dev-k8s.project_id}.svc.id.goog"
 }
 
 }
