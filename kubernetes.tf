@@ -63,7 +63,7 @@ management {
     machine_type = "ec2-medium"
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    service_account = google_service_account.default.email
+    service_account = google_service_account.svc-gke.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
