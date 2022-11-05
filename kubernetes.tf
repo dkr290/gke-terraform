@@ -3,7 +3,7 @@ resource "google_service_account" "svc-gke" {
   project = data.google_project.dev-k8s.project_id
 
   depends_on = [
-    google_project.dev-k8s
+    data.google_project.dev-k8s
   ]
 }
 
@@ -39,7 +39,7 @@ resource "google_container_cluster" "gke" {
   }
 
 workload_identity_config {
-  workload_pool= "${google_project.dev-k8s.project_id}.svc.id.goog"
+  workload_pool= "${data.google_project.dev-k8s.project_id}.svc.id.goog"
 }
 
 }

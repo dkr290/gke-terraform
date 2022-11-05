@@ -13,7 +13,7 @@ output "project_id" {
 
 
 
-data "google_project_service" "service" {
+resource "google_project_service" "service" {
     project = data.google_project.dev-k8s.project_number
     service = local.projects_api
   
