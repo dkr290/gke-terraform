@@ -1,11 +1,20 @@
 data "google_project" "dev-k8s" {
    
-    project_id = local.service_project_id
-   
 }
 
+
+output "project_number" {
+  value = data.google_project.dev-k8s.number
+}
+
+output "project_id" {
+  value = data.google_project.dev-k8s.project_id
+}
+
+
+
 data "google_project_service" "service" {
-    project = data.google_project.dev-k8s.number
+    project = data.google_project.dev-k8s.project_number
     service = local.projects_api
   
 }
