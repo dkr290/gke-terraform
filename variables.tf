@@ -1,14 +1,12 @@
-variable "org_id" {
-    description = "This is the organization ID for the project"
-  
-}
+
 
 variable "region" {
-  default = "The region of the GKE"
+  description = "The region of the GKE"
+  default = "europe-west1"
 }
 
 variable "project_id" {
-  default = "The project ID"
+  description= "The project ID"
 }
 
 variable "cluster_name" {
