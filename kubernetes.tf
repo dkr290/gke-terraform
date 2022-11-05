@@ -42,6 +42,10 @@ workload_identity_config {
   workload_pool= "${data.google_project.dev-k8s.project_id}.svc.id.goog"
 }
 
+depends_on = [
+  google_compute_subnetwork.private
+]
+
 }
 
 resource "google_container_node_pool" "general" {
