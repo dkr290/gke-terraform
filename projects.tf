@@ -14,7 +14,7 @@ output "project_id" {
 
 
 resource "google_project_service" "service" {
-    project = data.google_project.dev-k8s.project_number
+    project = data.google_project.dev-k8s.number
     service = local.projects_api
   
 }
