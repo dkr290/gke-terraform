@@ -1,6 +1,6 @@
 resource "google_service_account" "svc-gke" {
   account_id = "svc-gke"
-  project = google_project.dev-k8s.project_id
+  project = data.google_project.dev-k8s.project_id
 
   depends_on = [
     google_project.dev-k8s
@@ -11,7 +11,7 @@ resource "google_container_cluster" "gke" {
   name               = local.gke_cluster_name
   location           = var.region
   initial_node_count = 1
-  project = google_project.dev-k8s.project_id
+  project = data.google_project.dev-k8s.project_id
   networking_mode = "VPC_NATIVE"
   network = google_compute_network.vpc_network.self_link
   subnetwork = google_compute_subnetwork.private.self_link
@@ -47,7 +47,7 @@ workload_identity_config {
 resource "google_container_node_pool" "general" {
   name       = "general"
   cluster    = google_container_cluster.gke.name
-  project = google_project.dev-k8s.project_id
+  project = data.google_project.dev-k8s.project_id
   location = var.region
   node_count = 1
 

@@ -1,5 +1,5 @@
 resource "google_compute_network" "vpc_network" {
-  project                 = google_project.dev-k8s.project_id
+  project                 = data.google_project.dev-k8s.project_id
   name                    = "vpc-network"
   auto_create_subnetworks = false
   routing_mode = "REGIONAL"
@@ -9,7 +9,7 @@ resource "google_compute_network" "vpc_network" {
 
 resource "google_compute_subnetwork" "private" {
   name          = "private"
-  project = google_project.dev-k8s.project_id
+  project = data.google_project.dev-k8s.project_id
   ip_cidr_range = "10.5.0.0/20"
   region        = var.region
   network       = google_compute_network.vpc_network.self_link
