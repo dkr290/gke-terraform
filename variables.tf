@@ -7,10 +7,6 @@ variable "region" {
   default = "The region of the GKE"
 }
 
-variable "billing_id" {
-  description = "The Billing id"
-}
-
 variable "cluster_name" {
     default = "gkedemo1"
     type = string
