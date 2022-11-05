@@ -1,5 +1,5 @@
 data "google_project" "dev-k8s" {
-    name = local.service_project_name
+   
     project_id = local.service_project_id
    
 }
