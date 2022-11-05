@@ -7,6 +7,10 @@ variable "region" {
   default = "The region of the GKE"
 }
 
+variable "project_id" {
+  default = "The project ID"
+}
+
 variable "cluster_name" {
     default = "gkedemo1"
     type = string
