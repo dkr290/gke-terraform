@@ -54,6 +54,7 @@ resource "google_container_node_pool" "general" {
   project = data.google_project.dev-k8s.project_id
   location = var.region
   node_count = 1
+  initial_node_count = 1
 
 
 management {
