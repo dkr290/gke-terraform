@@ -20,6 +20,9 @@ resource "google_container_cluster" "gke" {
   release_channel {
     channel = "REGULAR"
   }
+node_locations = [
+    "${var.region}-b",
+  ]
 
   ip_allocation_policy {
     cluster_secondary_range_name = "pod-ip-range"
