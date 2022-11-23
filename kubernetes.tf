@@ -1,6 +1,7 @@
 resource "google_service_account" "svc-gke" {
   account_id = "svc-gke"
   project = data.google_project.dev-k8s.project_id
+  display_name = "Service Account GKE"
 
   depends_on = [
     data.google_project.dev-k8s
@@ -73,7 +74,7 @@ management {
     machine_type = "e2-medium"
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    service_account = google_service_account.default.email
+    service_account = google_service_account.svc-gke.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
       "https://www.googleapis.com/auth/logging.write",
