@@ -53,8 +53,10 @@ resource "google_container_node_pool" "general" {
   cluster    = google_container_cluster.gke.name
   project = data.google_project.dev-k8s.project_id
   location = var.region
-  node_count = 1
-  initial_node_count = 1
+  autoscaling{
+    min_node_count = 1
+    max_node_count = 2
+  }
 
 
 management {
