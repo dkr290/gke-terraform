@@ -8,20 +8,11 @@ resource "google_service_account" "svc-gke" {
   ]
 }
 
-resource "google_service_account_iam_binding" "gkebinding-iam" {
-  service_account_id = google_service_account.svc-gke.name
-  role               = "roles/containerregistry.ServiceAgent"
-  
-  members = [
-    "serviceAccount:${google_service_account.svc-gke.email}",
-  ]
+resource "google_project_iam_member" "project" {
+  project = data.google_project.dev-k8s.project_id
+  role    = "roles/containerregistry.ServiceAgent"
+  member  = "serviceAccount:${google_service_account.svc-gke.email}"
 }
-
-# resource "google_service_account_iam_member" "cont-registry" {
-#   service_account_id = google_service_account.svc-gke.name
-#   role               = "roles/containerregistry.ServiceAgent"
-#   member             = "serviceAccount:${google_service_account.svc-gke.email}"
-# }
 
 
 
