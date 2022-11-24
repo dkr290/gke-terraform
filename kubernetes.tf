@@ -9,9 +9,9 @@ resource "google_service_account" "svc-gke" {
 }
 
 resource "google_service_account_iam_binding" "gkebinding-iam" {
- 
+  service_account_id = google_service_account.svc-gke.name
   role               = "roles/containerregistry.ServiceAgent"
-  project = data.google_project.dev-k8s.project_id
+  
   members = [
     "serviceAccount:${google_service_account.svc-gke.email}",
   ]
