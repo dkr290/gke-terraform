@@ -20,6 +20,7 @@ jobs:
         PROJECT_ID: ${{ secrets.GKE_PROJECT }}
         TF_VAR_project_id: ${{ secrets.GKE_PROJECT }}
         TF_VAR_credentials: ${{ secrets.GCP_SA_KEY }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
     name: "Terraform"
     runs-on: ubuntu-latest
     strategy:
