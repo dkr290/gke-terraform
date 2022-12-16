@@ -21,6 +21,7 @@ terraform {
  backend "gcs" {
    bucket  = "terraformstate80"
    prefix  = "terraform/state"
+   credentials = "/tmp/key.json" 
  }
 }
 
