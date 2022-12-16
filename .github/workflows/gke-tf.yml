@@ -83,6 +83,7 @@ jobs:
         with:
           cluster_name: operations-dev-gkedemo1
           location: europe-north1
+          project_id: ${{ secrets.GKE_PROJECT }}
           
       
       - id: get-pods
@@ -102,3 +103,32 @@ jobs:
       # - id: get-pods-after-bootstrap
       #   if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
       #   run: kubectl get pods -A 
+
+  terraform-destroy:
+    env:
+        
+        GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+        TF_VAR_project_id: ${{ secrets.GKE_PROJECT }}
+        TF_VAR_credentials: ${{ secrets.GCP_SA_KEY }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+    name: "terraform-destroy"
+    runs-on: ubuntu-latest
+    environment: 'terraform-destroy'
+    strategy:
+      matrix:
+        working-directory: [gke-tf]
+    defaults:
+      run:
+        working-directory: ${{ matrix.working-directory }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Terraform Destroy
+       # if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "$GCP_SA_KEY"  > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
+          terraform destroy -auto-approve
