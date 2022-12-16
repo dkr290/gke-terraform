@@ -2,7 +2,7 @@
 
 variable "region" {
   description = "The region of the GKE"
-  default = "europe-west1"
+  default = "europe-north1"
 }
 
 variable "project_id" {
@@ -14,6 +14,10 @@ variable "cluster_name" {
     type = string
     description = "GKE cluster name"
   
+}
+variable "worker_nodes_disk_size" {
+  default = "10"
+
 }
 
 

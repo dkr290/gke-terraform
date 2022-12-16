@@ -24,7 +24,7 @@ resource "google_container_cluster" "gke" {
   networking_mode = "VPC_NATIVE"
   network = google_compute_network.vpc_network.self_link
   subnetwork = google_compute_subnetwork.private.self_link
-  remove_default_node_pool = true
+  remove_default_node_pool = false
 
   release_channel {
     channel = "REGULAR"
@@ -65,6 +65,7 @@ resource "google_container_node_pool" "general" {
   cluster    = google_container_cluster.gke.name
   project = data.google_project.dev-k8s.project_id
   location = var.region
+ 
   autoscaling{
     min_node_count = 1
     max_node_count = 2
@@ -80,6 +81,7 @@ management {
       "role" = "general"
     }
     machine_type = "e2-medium"
+    disk_size_gb = var.worker_nodes_disk_size
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     service_account = google_service_account.svc-gke.email

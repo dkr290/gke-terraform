@@ -14,7 +14,14 @@ terraform {
 provider "google" {
   # Configuration options
 
-  region = "us-west2"
+  region = "europe-north1"
+}
+
+terraform {
+ backend "gcs" {
+   bucket  = "terraformstate80"
+   prefix  = "terraform/state"
+ }
 }
 
 resource "random_integer" "int" {
