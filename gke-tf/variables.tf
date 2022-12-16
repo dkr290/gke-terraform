@@ -5,7 +5,7 @@ variable "region" {
   default = "europe-north1"
 }
 
-variable "PROJECT_ID" {
+variable "project_id" {
   description= "The project ID"
 }
 
