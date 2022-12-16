@@ -65,8 +65,8 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-       # if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
-        if: github.ref == 'refs/heads/master'
+       # if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
+        if: github.ref == 'refs/heads/main'
         run: |
           echo "$GCP_SA_KEY"  > /tmp/key.json
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
@@ -78,7 +78,7 @@ jobs:
     needs: terraform
     steps:    
       - id: get-credentials
-        if: github.ref == 'refs/heads/master' 
+        if: github.ref == 'refs/heads/main' 
         uses: google-github-actions/get-gke-credentials@main
         with:
           cluster_name: production-cluster
@@ -86,7 +86,7 @@ jobs:
           credentials: ${{ secrets.GCP_SA_KEY  }}
       
       - id: get-pods
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: kubectl get pods -A 
 
       # - id: install-flagger 
