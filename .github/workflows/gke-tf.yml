@@ -36,6 +36,11 @@ jobs:
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ secrets.GKE_PROJECT }}
+      
+      - name: export json
+        run: |
+          echo "GCP_SA_KEY" | base64 --decode > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
 
       - name: Terraform Init
         id: init
