@@ -9,6 +9,12 @@ variable "project_id" {
   description= "The project ID"
 }
 
+variable "credentials" {
+  type =  string
+  description = "Credentials"
+  
+}
+
 variable "cluster_name" {
     default = "gkedemo1"
     type = string
