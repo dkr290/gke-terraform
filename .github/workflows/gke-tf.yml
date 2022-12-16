@@ -3,7 +3,7 @@ name: "GKE Terraform"
 on:
   push:
     paths:
-    - 'gke_tf/**'
+    - 'gke-tf/**'
   #  - 'workers/**' 
     branches:
       - master
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        working-directory: [gke_tf]
+        working-directory: [gke-tf]
     defaults:
       run:
         working-directory: ${{ matrix.working-directory }}
