@@ -125,6 +125,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: terraform init
+        run: |
+          echo "$GCP_SA_KEY"  > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
+          terraform init
       - name: Terraform Destroy
        # if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
         if: github.ref == 'refs/heads/main'
