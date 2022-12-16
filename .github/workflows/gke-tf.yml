@@ -76,7 +76,11 @@ jobs:
     name: bootstrap-cluster
     runs-on: ubuntu-latest
     needs: terraform
-    steps:    
+    steps: 
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}  
       - id: get-credentials
         if: github.ref == 'refs/heads/main' 
         uses: google-github-actions/get-gke-credentials@main
