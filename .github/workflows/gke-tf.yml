@@ -43,17 +43,14 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
           terraform init
 
-      # - name: Terraform Init
-      #   id: init
-      #   run: terraform init
-          
+     
       - name: Terraform validate
         id: validate
         run: terraform validate
 
       - name: Terraform Plan
         id: plan
-        if: github.event_name == 'pull_request'
+      #  if: github.event_name == 'pull_request'
         run: terraform plan -no-color
         continue-on-error: true
 
@@ -62,7 +59,8 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
+       # if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
+        if: github.ref == 'refs/heads/master'
         run: terraform apply -auto-approve
   
   bootstrap:
@@ -71,15 +69,15 @@ jobs:
     needs: terraform
     steps:    
       - id: get-credentials
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
+        if: github.ref == 'refs/heads/master' 
         uses: google-github-actions/get-gke-credentials@main
         with:
           cluster_name: production-cluster
           location: europe-north1
-          credentials: ${{ secrets.GCP_SECRET }}
+          credentials: ${{ secrets.GCP_SA_KEY  }}
       
       - id: get-pods
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
+        if: github.ref == 'refs/heads/master'
         run: kubectl get pods -A 
 
       # - id: install-flagger 
