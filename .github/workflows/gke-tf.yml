@@ -19,6 +19,7 @@ jobs:
         ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
         ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        PROJECT_ID: ${{ secrets.GKE_PROJECT }}
     name: "Terraform"
     runs-on: ubuntu-latest
     strategy:
@@ -31,6 +32,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
+      # Setup gcloud CLI
+      - uses: google-github-actions/setup-gcloud@94337306dda8180d967a56932ceb4ddcf01edae7
+        with:
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          project_id: ${{ secrets.GKE_PROJECT }}
 
       - name: Terraform Init
         id: init
