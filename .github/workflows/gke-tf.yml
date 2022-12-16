@@ -81,9 +81,9 @@ jobs:
         if: github.ref == 'refs/heads/main' 
         uses: google-github-actions/get-gke-credentials@main
         with:
-          cluster_name: production-cluster
+          cluster_name: operations-dev-gkedemo1
           location: europe-north1
-          credentials: ${{ secrets.GCP_SA_KEY  }}
+          
       
       - id: get-pods
         if: github.ref == 'refs/heads/main'
