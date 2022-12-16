@@ -6,7 +6,7 @@ on:
     - 'gke-tf/**'
   #  - 'workers/**' 
     branches:
-      - master
+      - main
   pull_request:
 
   # Allows you to run this workflow manually from the Actions tab
@@ -22,6 +22,7 @@ jobs:
         TF_VAR_credentials: ${{ secrets.GCP_SA_KEY }}
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
     name: "Terraform"
+    environment: 'terraform-apply'
     runs-on: ubuntu-latest
     strategy:
       matrix:
