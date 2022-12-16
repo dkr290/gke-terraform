@@ -54,7 +54,10 @@ jobs:
       - name: Terraform Plan
         id: plan
       #  if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
+        run: |
+          echo "$GCP_SA_KEY"  > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json 
+          terraform plan -no-color
         continue-on-error: true
 
       - name: Terraform Plan Status
@@ -64,7 +67,10 @@ jobs:
       - name: Terraform Apply
        # if: github.ref == 'refs/heads/master' && github.event_name == 'push' 
         if: github.ref == 'refs/heads/master'
-        run: terraform apply -auto-approve
+        run: |
+          echo "$GCP_SA_KEY"  > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
+          terraform apply -auto-approve
   
   bootstrap:
     name: bootstrap-cluster
