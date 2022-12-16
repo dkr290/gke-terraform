@@ -41,10 +41,11 @@ jobs:
         run: |
           echo "GCP_SA_KEY"  > /tmp/key.json
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
+          terraform init
 
-      - name: Terraform Init
-        id: init
-        run: terraform init
+      # - name: Terraform Init
+      #   id: init
+      #   run: terraform init
           
       - name: Terraform validate
         id: validate
