@@ -5,6 +5,13 @@ variable "location" {
   default = "europe-north1-a"
 }
 
+
+variable "node_pool_name" {
+  default = "general"
+  
+}
+
+
 variable "project_id" {
   description= "The project ID"
 }
@@ -30,6 +37,8 @@ variable "gke_version" {
   default = "1.24.7-gke.900"
   
 }
+
+
 
 
 

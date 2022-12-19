@@ -14,7 +14,7 @@ resource "google_container_node_pool" "general" {
   project = data.google_project.dev-k8s.project_id
   location = var.location
   version = var.gke_version
-  node_locations = var.node_locations
+
  
   autoscaling{
     min_node_count = 1
