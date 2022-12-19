@@ -35,10 +35,7 @@ resource "google_container_cluster" "gke" {
     release_channel {
     channel = "REGULAR" // or less frequently update fro production STABLE
     }
-  node_locations = [
-    "${var.region}-b",
-  ]
-
+ 
   ip_allocation_policy {
     cluster_secondary_range_name = "pod-ip-range"
     services_secondary_range_name = "services-ip-range"
@@ -62,6 +59,12 @@ addons_config{
 }
 workload_identity_config {
   workload_pool= "${data.google_project.dev-k8s.project_id}.svc.id.goog"
+}
+
+node_config {
+ 
+    machine_type = "e2-medium"
+    disk_size_gb = var.worker_nodes_disk_size
 }
 
 depends_on = [
