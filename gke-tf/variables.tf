@@ -2,7 +2,7 @@
 
 variable "region" {
   description = "The region of the GKE"
-  default = "europe-north1"
+  default = "europe-north1-a"
 }
 
 variable "project_id" {

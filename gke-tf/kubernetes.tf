@@ -26,11 +26,17 @@ resource "google_container_cluster" "gke" {
   subnetwork = google_compute_subnetwork.private.self_link
   remove_default_node_pool = false
 
-  release_channel {
-    channel = "REGULAR"
-  }
-node_locations = [
-    "${var.region}-b",
+
+    maintenance_policy {
+         daily_maintenance_window {
+        start_time = "03:00"
+       }
+   }
+    release_channel {
+    channel = "REGULAR" // or less frequently update fro production STABLE
+    }
+  node_locations = [
+    "${var.region}",
   ]
 
   ip_allocation_policy {
