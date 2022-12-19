@@ -11,7 +11,7 @@ resource "google_compute_subnetwork" "private" {
   name          = "private"
   project = data.google_project.dev-k8s.project_id
   ip_cidr_range = "10.5.0.0/20"
-  region        = var.location
+  region        = var.region
   network       = google_compute_network.vpc_network.self_link
   private_ip_google_access = true
 
