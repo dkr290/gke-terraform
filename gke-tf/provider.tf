@@ -14,13 +14,16 @@ terraform {
 provider "google" {
   # Configuration options
 
-  region = "europe-north1"
+ 
+  credentials = var.credentials
+  region = var.region
 }
 
 terraform {
  backend "gcs" {
    bucket  = "terraformstate80"
    prefix  = "terraform/state"
+   
  }
 }
 
