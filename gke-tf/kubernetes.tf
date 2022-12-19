@@ -55,11 +55,11 @@ resource "google_container_cluster" "gke" {
     enable_private_nodes = true
     master_ipv4_cidr_block = "172.16.0.0/28"
   }
-
+addons_config{
   gcp_filestore_csi_driver_config {
     enabled = true
   }
-
+}
 workload_identity_config {
   workload_pool= "${data.google_project.dev-k8s.project_id}.svc.id.goog"
 }
