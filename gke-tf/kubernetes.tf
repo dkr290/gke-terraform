@@ -36,7 +36,7 @@ resource "google_container_cluster" "gke" {
     channel = "REGULAR" // or less frequently update fro production STABLE
     }
   node_locations = [
-    "${var.location}",
+    "${var.region}-b",
   ]
 
   ip_allocation_policy {
