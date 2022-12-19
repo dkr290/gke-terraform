@@ -33,7 +33,7 @@ variable "cluster_name" {
   
 }
 variable "worker_nodes_disk_size" {
-  default = "10"
+  default = "30"
 
 }
 
