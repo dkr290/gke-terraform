@@ -4,6 +4,10 @@ variable "location" {
   description = "The region of the GKE"
   default = "europe-north1-a"
 }
+variable "region" {
+  description = "The region of the GKE"
+  default = "europe-north1"
+}
 
 
 variable "node_pool_name" {

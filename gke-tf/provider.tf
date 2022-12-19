@@ -16,7 +16,7 @@ provider "google" {
 
  
   credentials = var.credentials
-  region = var.location
+  region = var.region
 }
 
 terraform {
