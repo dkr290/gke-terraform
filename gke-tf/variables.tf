@@ -1,6 +1,6 @@
 
 
-variable "region" {
+variable "location" {
   description = "The region of the GKE"
   default = "europe-north1-a"
 }
@@ -24,6 +24,11 @@ variable "cluster_name" {
 variable "worker_nodes_disk_size" {
   default = "10"
 
+}
+
+variable "gke_version" {
+  default = "1.24.7-gke.900"
+  
 }
 
 
