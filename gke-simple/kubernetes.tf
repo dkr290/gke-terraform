@@ -4,7 +4,6 @@ resource "google_container_cluster" "gke" {
   name                     = local.gke_cluster_name
   location                 = var.location
   project                  = data.google_project.dev-k8s.project_id
-  networking_mode          = "VPC_NATIVE"
   subnetwork               = var.subnetwork
   initial_node_count       = 1
   node_version = var.gke_version
