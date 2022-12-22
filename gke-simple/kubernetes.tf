@@ -1,12 +1,16 @@
 
 
 resource "google_container_cluster" "gke" {
+  depends_on = [
+    google_service_account.svc-gke,
+  ]
   name                     = local.gke_cluster_name
   location                 = var.location
   project                  = data.google_project.dev-k8s.project_id
   subnetwork               = var.subnetwork
   initial_node_count       = 1
   node_version = var.gke_version
+  min_master_version = var.gke_version
   remove_default_node_pool = false
 
   maintenance_policy {
